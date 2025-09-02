@@ -49,16 +49,17 @@ RVRS now supports typed declarations, scoped evaluation, branching, flow composi
 - ✅ Echo-based return system and optional `mouth` tracing  
 - ✅ Multi-flow files, `main` entrypoint, and standard rituals  
 
-#### ⚙️ Runtime + Infra
-- ✅ AST → IR lowering pipeline  
-- ✅ IR evaluator with scoped flows and error tracking  
-- ✅ Static typechecking of expressions and declarations  
-- ✅ Source, IR, and typecheck test runners:
-  - `RunAll`: full test suite  
-  - `RunIRTests`: IR-level tests  
-  - `TestTypeCheck`: type inference and type error tests  
-- ✅ Standard library merging via `stdlib.rvrs`  
-- ✅ Developer docs, guides, and module maps
+#### ⚙️ Runtime & Engine (current)
+- ✅ Engine-first evaluator executing the recursive AST
+- ✅ Built on Ya (**Я**) principles with a compatibility/interop layer
+- ✅ Scoped flows and deterministic execution (early return, shadowing, etc.)
+- ✅ Static typechecking
+  - Expressions: stable
+  - Statements & declarations: in progress
+- ✅ Test runners for engine execution and typechecking (positive & negative cases)
+- ✅ Standard library merged at startup
+- ✅ Tooling: parser, pretty-printer, and syntax/value layers
+
 
 ---
 
