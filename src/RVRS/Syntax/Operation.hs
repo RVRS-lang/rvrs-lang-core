@@ -1,9 +1,25 @@
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+
 module RVRS.Syntax.Operation where
 
 import Ya
 
 import RVRS.Syntax.Primitive
 import RVRS.Syntax.Identifier
+
+newtype Instead x e = Instead x
+
+type instance Supertype (Instead x e) = x
+
+instance Elicitable T'I'II (->) (Instead x e) where
+  elicit = T'I'II (\(Instead x) -> x)
+
+instance Elicitable T'II'I (->) (Instead x e) where
+  elicit = T'II'I Instead
+
+type Twice = T'I'I (Object Unit)
 
 type Operand = Instead Value `S'T'I'TT'I` Instead Name
 
