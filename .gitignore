@@ -24,3 +24,9 @@ cabal.sandbox.config
 .vscode/
 .idea/
 
+# Local Ya development checkouts
+deps/
+
+# Local build logs
+build.log
+build-full.log
