@@ -1,0 +1,4 @@
+flow main {
+  source riverFlow = 1
+  echo riverFlow
+}

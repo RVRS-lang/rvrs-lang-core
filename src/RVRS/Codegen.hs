@@ -4,7 +4,7 @@ import Prelude
 import Data.Bool (bool)
 import GHC.IsList (fromList, toList)
 
-import Ya (Object (..), Recursive (..), type T'I' (..), type AR__, type P, pattern Both, is, unwrap, yo, ho, ho'he, hu, la, li)
+import Ya (Object (..), Recursive (..), type AR__, type P, pattern Both, is, unwrap, yo, ho, ho'he, hu, la, li)
 import Ya.Literal ()
 
 import RVRS.Syntax

@@ -4,8 +4,8 @@ import Prelude
 import GHC.IsList (fromList)
 import Control.Monad (void)
 import Control.Monad.Combinators.Expr
+import Data.Char (isAsciiLower, isAsciiUpper)
 import Data.Void
-import Data.String
 import Text.Megaparsec
 import Text.Megaparsec.Char
 
@@ -77,7 +77,13 @@ parens :: Parser a -> Parser a
 parens = between (symbol "(") (symbol ")")
 
 identifier :: Parser Name
-identifier = fromString <$> do lexeme $ (:) <$> lowerChar <*> many letterChar
+identifier = do
+  characters <- lexeme $ (:) <$> satisfy isAsciiLower <*> many (satisfy isAsciiLetter)
+  case nameFromString characters of
+    Just name -> pure name
+    Nothing -> fail "invalid RVRS identifier"
+  where
+    isAsciiLetter character = isAsciiLower character || isAsciiUpper character
 
 stringLiteral :: Parser String
 stringLiteral = char '"' *> manyTill M.charLiteral (char '"')
