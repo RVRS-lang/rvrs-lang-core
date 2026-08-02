@@ -6,7 +6,7 @@ import Ya (Object (..), at, this, ho)
 import Ya.Literal
 
 -- Internal modules
-import RVRS.Syntax (Flow, Name)
+import RVRS.Syntax (Flow, Name, nameFromString)
 import RVRS.Parser (parseRVRS)
 import RVRS.Eval (evalIRFlow, EvalError)
 import RVRS.Codegen (prettyPrintFlow)
@@ -50,7 +50,8 @@ main = do
 
               -- Evaluate main flow
               putStrLn "\nEvaluation Output:"
-              evalResult <- evalIRFlow allFlows "main" []
+              let mainName = maybe (error "invalid built-in RVRS name: main") id (nameFromString "main")
+              evalResult <- evalIRFlow allFlows mainName []
 
               case evalResult of
                 Left err -> putStrLn ("Eval Error: " ++ show err)

@@ -3,7 +3,7 @@ module Main where
 
 import RVRS.Parser (parseRVRS)
 import RVRS.Engine (flowing)
-import RVRS.Syntax (Flow)
+import RVRS.Syntax (Flow, nameFromString)
 import Ya (Object(..))  
 import qualified Data.Text.IO as T
 import qualified Data.Text as Text
@@ -31,5 +31,6 @@ runTestFile path = do
       putStrLn $ errorBundlePretty err
     Right flows -> do
       let flowMap = fromList [(name, flow) | These flow name <- flows]
-      result <- flowing flowMap "main" []
+      let mainName = maybe (error "invalid built-in RVRS name: main") id (nameFromString "main")
+      result <- flowing flowMap mainName []
       putStrLn $ "Result: " -- ++ show result
